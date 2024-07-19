@@ -1,0 +1,13 @@
+option('enable-sse', type: 'boolean', value: true, description: 'Disable use of SSE FP instructions on x86')
+option('enable-64bit-docid', type: 'boolean', value: false, description: 'Enable 64bit docid')
+option('enable-64bit-termcount', type: 'boolean', value: false, description: 'Enable 64bit termcount')
+option('enable-64bit-termpos', type: 'boolean', value: false, description: 'Enable 64bit termpos')
+
+option('enable-backend-chert', type: 'boolean', value: true, description: 'Build the chert database backend')
+option('enable-backend-glass', type: 'boolean', value: true, description: 'Build the glass database backend')
+option('enable-backend-inmemory', type: 'boolean', value: true, description: 'Build the inmemory database backend')
+option('enable-backend-remote', type: 'boolean', value: true, description: 'Build the remote database backend')
+
+option('enable-assertion', type: 'combo', choices : ['no', 'partial', 'yes'], description: 'enable debug assertions')
+option('enable-log', type: 'combo', choices: ['no', 'yes', 'profile'], description: 'generate a log of methods called, etc')
+
