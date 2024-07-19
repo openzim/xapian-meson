@@ -1,0 +1,19 @@
+sources += files(
+    'bb2weight.cc',
+    'bm25plusweight.cc',
+    'bm25weight.cc',
+    'boolweight.cc',
+    'coordweight.cc',
+    'dlhweight.cc',
+    'dphweight.cc',
+    'ifb2weight.cc',
+    'ineb2weight.cc',
+    'inl2weight.cc',
+    'lmweight.cc',
+    'pl2plusweight.cc',
+    'pl2weight.cc',
+    'tfidfweight.cc',
+    'tradweight.cc',
+    'weight.cc',
+    'weightinternal.cc'
+)
