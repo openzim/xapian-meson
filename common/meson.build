@@ -25,3 +25,10 @@ endif
 if get_option('enable-backend-remote')
     sources += files('socket_utils.cc')
 endif
+
+
+libgetopt = static_library(
+   'getopt',
+   'getopt.cc',
+    include_directories: include_dirs
+)
