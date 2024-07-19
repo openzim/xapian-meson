@@ -330,6 +330,7 @@ subdir('queryparser')
 subdir('unicode')
 subdir('weight')
 
+
 deps = [zlib_dep, uuid_dep]
 
 libxapian = library(
@@ -351,3 +352,5 @@ pkg.generate(
     url: 'https://xapian.org/',
     filebase: 'xapian-core',
 )
+
+subdir('tests')
