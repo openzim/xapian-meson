@@ -640,10 +640,16 @@
     }
     if ((properties&PATH)) {
 	static const test_desc tests[] = {
-	    { "unsupportedcheck1", test_unsupportedcheck1 },
 	    { "stubdb2", test_stubdb2 },
 	    { "stubdb3", test_stubdb3 },
 	    { "stubdb5", test_stubdb5 },
+	    { 0, 0 }
+	};
+	result = max(result, test_driver::run(tests));
+    }
+    if ((properties&PATH)&&(properties&REMOTE)) {
+	static const test_desc tests[] = {
+	    { "unsupportedcheck1", test_unsupportedcheck1 },
 	    { "stubdb9", test_stubdb9 },
 	    { 0, 0 }
 	};

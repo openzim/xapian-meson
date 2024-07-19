@@ -336,7 +336,7 @@ DEFINE_TESTCASE(stubdb8, inmemory) {
 }
 
 /// Test error running Database::check() on a remote stub database.
-DEFINE_TESTCASE(stubdb9, path) {
+DEFINE_TESTCASE(stubdb9, path && remote) {
     mkdir(".stub", 0755);
     const char * dbpath = ".stub/stubdb9";
     ofstream out(dbpath);

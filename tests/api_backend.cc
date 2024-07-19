@@ -1782,7 +1782,7 @@ DEFINE_TESTCASE(nosuchterm, backend) {
 }
 
 // Test exception for check() on remote via stub.
-DEFINE_TESTCASE(unsupportedcheck1, path) {
+DEFINE_TESTCASE(unsupportedcheck1, path && remote) {
     mkdir(".stub", 0755);
     const char* stubpath = ".stub/unsupportedcheck1";
     ofstream out(stubpath);
