@@ -647,7 +647,7 @@ DEFINE_TESTCASE(compacttofd2, compact && !chert) {
     char buf[8192];
     size_t n = sizeof(buf);
     while (n) {
-	ssize_t c = read(fd, buf, n);
+	auto c = read(fd, buf, n);
 	TEST(c > 0);
 	for (const char * p = buf; p != buf + c; ++p) {
 	    TEST(*p == 0);
