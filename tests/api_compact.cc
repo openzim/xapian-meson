@@ -645,7 +645,7 @@ DEFINE_TESTCASE(compacttofd2, compact && !chert) {
 
     // Test that the database wasn't just written to the start of the file.
     char buf[8192];
-    size_t n = sizeof(buf);
+    auto n = sizeof(buf);
     while (n) {
 	auto c = read(fd, buf, n);
 	TEST(c > 0);
