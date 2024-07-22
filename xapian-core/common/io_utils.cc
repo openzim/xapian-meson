@@ -124,7 +124,7 @@ io_read(int fd, char * p, size_t n, size_t min)
 {
     size_t total = 0;
     while (n) {
-	ssize_t c = read(fd, p, n);
+	auto c = read(fd, p, n);
 	if (c <= 0) {
 	    if (c == 0) {
 		if (total >= min) break;
@@ -145,7 +145,7 @@ void
 io_write(int fd, const char * p, size_t n)
 {
     while (n) {
-	ssize_t c = write(fd, p, n);
+	auto c = write(fd, p, n);
 	if (c < 0) {
 	    if (errno == EINTR) continue;
 	    throw Xapian::DatabaseError("Error writing to file", errno);
@@ -206,9 +206,9 @@ io_read_block(int fd, char * p, size_t n, off_t b, off_t o)
     if (rare(lseek(fd, o, SEEK_SET) < 0))
 	throw_block_error("Error seeking to block ", b, errno);
     while (true) {
-	ssize_t c = read(fd, p, n);
+	auto c = read(fd, p, n);
 	// We should get a full read most of the time, so streamline that case.
-	if (usual(c == ssize_t(n)))
+	if (usual(c == decltype(c)(n)))
 	    return;
 	if (c <= 0) {
 	    if (c == 0)
@@ -233,9 +233,9 @@ io_write_block(int fd, const char * p, size_t n, off_t b, off_t o)
     // per block write.
 #ifdef HAVE_PWRITE
     while (true) {
-	ssize_t c = pwrite(fd, p, n, o);
+	auto c = pwrite(fd, p, n, o);
 	// We should get a full write most of the time, so streamline that case.
-	if (usual(c == ssize_t(n)))
+	if (usual(c == decltype(c)(n)))
 	    return;
 	if (c < 0) {
 	    // We get EINTR if the syscall was interrupted by a signal.
@@ -251,9 +251,9 @@ io_write_block(int fd, const char * p, size_t n, off_t b, off_t o)
     if (rare(lseek(fd, o, SEEK_SET) < 0))
 	throw_block_error("Error seeking to block ", b, errno);
     while (true) {
-	ssize_t c = write(fd, p, n);
+	auto c = write(fd, p, n);
 	// We should get a full write most of the time, so streamline that case.
-	if (usual(c == ssize_t(n)))
+	if (usual(c == decltype(c)(n)))
 	    return;
 	if (c < 0) {
 	    // We get EINTR if the syscall was interrupted by a signal.
