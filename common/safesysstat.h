@@ -45,7 +45,7 @@
 // to allow source code to just specify a mode argument unconditionally.
 //
 // The () around mkdir are in case it's defined as a macro.
-inline int (mkdir)(const char *pathname, mode_t /*mode*/) {
+inline int (mkdir)(const char *pathname, int /*mode*/) {
     return _mkdir(pathname);
 }
 
