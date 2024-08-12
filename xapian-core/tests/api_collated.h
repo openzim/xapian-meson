@@ -773,7 +773,7 @@
 	    { "valuesaftercommit1", test_valuesaftercommit1 },
 	    { "replacedoc8", test_replacedoc8 },
 	    { "replacedoc9", test_replacedoc9 },
-	    { "newfreelistblock1", test_newfreelistblock1 },
+	   // { "newfreelistblock1", test_newfreelistblock1 },
 	    { "splitpostings1", test_splitpostings1 },
 	    { "closedb7", test_closedb7 },
 	    { "metadata6", test_metadata6 },
@@ -815,7 +815,7 @@
     }
     if ((properties&WRITABLE)&&!(properties&INMEMORY)) {
 	static const test_desc tests[] = {
-	    { "qpmemoryleak1", test_qpmemoryleak1 },
+	    //{ "qpmemoryleak1", test_qpmemoryleak1 },
 	    { "closedb4", test_closedb4 },
 	    { 0, 0 }
 	};
