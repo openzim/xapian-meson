@@ -267,15 +267,15 @@ endif
 
 if host_machine.cpu_family() == 'x86'
   if get_option('enable-sse')
-    if gcc
+    if cc.get_id() == 'gcc'
       add_project_arguments('-mfpmath=sse -m{} -mtune=generic', language: 'ccp')
-    elif msvc
+    elif cc.get_id() == 'msvc'
       add_project_arguments('-arch:SSE', language: 'cpp')
     else
       # [TODO] Test for sun
     endif
   else
-    if msvc
+    if cc.get_id() == 'msvc'
       add_project_arguments('-arch:IA32', language: 'cpp')
     endif
   endif
