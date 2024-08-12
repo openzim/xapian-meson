@@ -134,7 +134,8 @@ test_unittest_exe = executable(
     'test_unittest',
     ['unittest.cc'] + uharness_srcs,
     include_directories: include_dirs + harness_include_dirs,
-    link_with: [libxapian, libgetopt] 
+    link_with: [libxapian, libgetopt],
+    dependencies: [uuid_dep], 
 )
 
 test(
