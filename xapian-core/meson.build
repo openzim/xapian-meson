@@ -65,7 +65,6 @@ check_functions = [
   ['HAVE_SIGACTION', 'sigaction', '#include<signal.h>'],
   ['HAVE_SLEEP', 'sleep', '#include<unistd.h>'],
   ['HAVE_STRERRORDESC_NP', 'strerrordesc_np', '#include <string.h>'],
-  ['HAVE_STRERROR_R', 'strerror_r', '#include<string.h>'],
   ['HAVE_SYSCONF', 'sysconf', '#include<unistd.h>'],
   ['HAVE_SYS_ERRLIST_AND_SYS_NERR', 'sys_errlist', '#include<cstdlib>'],
   ['HAVE_TIMER_CREATE', 'timer_create', '#include <time.h>'],
@@ -215,6 +214,34 @@ cdata.set('SIZEOF_LONG', cc.sizeof('long'))
 cdata.set('SIZEOF_LONG_LONG', cc.sizeof('long long'))
 cdata.set('SIZEOF_SHORT', cc.sizeof('short'))
 
+
+test_strerror_p_ret = '''#include <string.h>
+int
+main (void)
+{
+  char buf[100];
+  char x = *strerror_r (0, buf, sizeof buf);
+  char *p = strerror_r (0, buf, sizeof buf);
+  return !p || x;
+}
+'''
+
+# We should check with target compiler. But to do so we must be able to run the
+# test program on the target machine. Let's assume that native build return the same
+# thing that target build. [TOFIX]
+native_cc = meson.get_compiler('cpp', native: true)
+strerror_p_ret = native_cc.run(
+  test_strerror_p_ret,
+  name: 'Test if strerror_p returnt a char.'
+)
+
+if strerror_p_ret.compiled()
+  cdata.set10('HAVE_STRERROR_R', true)
+  cdata.set10('STRERROR_R_CHAR_P', strerror_p_ret.returncode() == 0)
+else
+  cdata.set10('HAVE_STRERROR_R', false)
+  cdata.set10('STRERROR_R_CHAR_P', false)
+endif
 
 
 if get_option('enable-backend-chert') or get_option('enable-backend-glass')
