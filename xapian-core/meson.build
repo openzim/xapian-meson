@@ -360,14 +360,14 @@ subdir('weight')
 
 deps = [zlib_dep, uuid_dep]
 
-libxapian = library(
+libxapian = static_library(
     'xapian',
     sources,
-    version: '30.12.4',
-    soversion: 30,
+#    version: '30.12.4',
+#    soversion: 30,
     dependencies: deps,
     include_directories: include_dirs,
-    link_args : ['-Wl,--no-undefined'],
+#    link_args : ['-Wl,--no-undefined'],
     install: true
 )
 
