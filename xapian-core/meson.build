@@ -246,7 +246,7 @@ endif
 
 if get_option('enable-backend-chert') or get_option('enable-backend-glass')
   zlib_dep = dependency('zlib')
-  if host_machine.system() == 'windows'
+  if build_machine.system() == 'windows'
     cdata.set('USE_WIN32_UUID_API', 1)
     win32_need_lws2_32 = true
     add_project_link_arguments('-lrpcrt4', language: 'cpp')
